@@ -2,7 +2,7 @@
   "name": "mutual-steam-games",
   "version": "1.0.0",
   "description": "An application that displays commonly owned games of multiple users.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/theo-dean/Mutual-Steam-Games#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "express": "^4.17.1"
   },
   "devDependencies": {

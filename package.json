@@ -4,7 +4,7 @@
   "description": "An application that displays commonly owned games of multiple users.",
   "main": "app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
   },

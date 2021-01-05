@@ -39,7 +39,6 @@ class SteamUserService {
         let gameIds: number[] = [];
 
         for (let game of games) {
-            //console.log(game.appid);
             gameIds.push(game.appid)
         }
         return gameIds;

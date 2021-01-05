@@ -1,6 +1,7 @@
 import express from 'express';
 import { SteamUserService } from './SteamUserService';
 import {SteamUser} from "./SteamUser";
+import {SteamUserManager} from "./SteamUserManager";
 
 const app = express();
 const steam = new SteamUserService();
@@ -9,12 +10,10 @@ const port = 3000;
 
 app.get('/', (req, res) => {
     let steamid = "76561198019038761";
-    let userTheo: SteamUser;
     steam.loadKey();
     steam.getServerResponse(steamid).then(data => {
-        userTheo = new SteamUser(steamid, steam.parseGameIDs(data));
+        SteamUserManager.addUser(new SteamUser(steamid, steam.parseGameIDs(data)));
     });
-
 })
 
 app.listen(port, () => {

@@ -1,12 +1,14 @@
 import {SteamUser} from "./SteamUser";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 class SteamUserService {
     private API_KEY_PATH = ".key";
     private API_KEY: string = "";
+    private promises: Promise<AxiosResponse<string>>[]
 
-    SteamUserService() {
+    constructor() {
         this.start();
+        this.promises = [];
     }
 
     start() {
@@ -31,6 +33,7 @@ class SteamUserService {
         const url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + this.getKey() + "&steamid=" + steamid + "&format=json";
         const response = await axios.get(url);
         const data = await response.data;
+        this.addPromise(data);
         return data;
     }
 
@@ -43,6 +46,15 @@ class SteamUserService {
         }
         return gameIds;
     }
+
+    addPromise(promise: Promise<any>){
+        this.promises.push(promise);
+    }
+
+    getPromises(): Promise<any>[] {
+        return this.promises;
+    }
+
 }
 
 export {SteamUserService};

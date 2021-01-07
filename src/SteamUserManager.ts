@@ -1,6 +1,6 @@
 import {SteamUser} from "./SteamUser";
 
-class SteamUserManager {
+class SteamUserManager{
     private static instance: SteamUserManager;
     private users: SteamUser[];
 
@@ -13,6 +13,10 @@ class SteamUserManager {
             SteamUserManager.instance = new SteamUserManager();
         }
         return SteamUserManager.instance;
+    }
+
+    public getUsers(): SteamUser[] {
+        return this.users;
     }
 
     public addUser(user: SteamUser){

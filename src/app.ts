@@ -9,22 +9,17 @@ steam.loadKey();
 const port = 3000;
 
 app.get('/', (req, res) => {
-    let steamid = "76561198019038761";
     const manager = SteamUserManager.getInstance();
     steam.loadKey();
-    steam.getServerResponse(steamid).then(data => {
-        manager.addUser(new SteamUser(steamid, steam.parseGameIDs(data)));
-    });
+    let steamid = "76561198019038761";
+    steam.getServerResponse(steamid);
     steamid = "76561198041070788";
-    steam.getServerResponse(steamid).then(data => {
-        manager.addUser(new SteamUser(steamid, steam.parseGameIDs(data)));
-    });
+    steam.getServerResponse(steamid);
 
     Promise.all(steam.getPromises()).then((vals) => {
-        vals.forEach(user => {
-
+        vals.forEach(userResponse => {
+            manager.addUser(userResponse.response.games);
         })
-        console.log(manager.getUsers())
         res.send(manager.getUsers());
     });
 })

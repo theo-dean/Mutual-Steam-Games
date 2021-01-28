@@ -7,7 +7,7 @@ export class SteamUser {
         this.games = games;
     }
 
-    CompareGamesWithUser(user: SteamUser): Array<number>{
+    compareGamesWithUser(user: SteamUser): Array<number>{
         return this.games.filter(val => user.games.includes(val));
     }
 

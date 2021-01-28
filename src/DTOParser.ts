@@ -1,7 +1,7 @@
 import {SteamUser} from "./SteamUser";
 
 export class DTOParser {
-    static ParseFromDTO(steamid: string, response: SteamUserDTO.RootObject): SteamUser{
+    static parseUser(steamid: string, response: SteamUserDTO.RootObject): SteamUser{
         let games = [];
 
         for (let game of response.response.games){
@@ -10,4 +10,6 @@ export class DTOParser {
 
         return new SteamUser(steamid, games);
     }
+
+    static parseGame(response: )
 }

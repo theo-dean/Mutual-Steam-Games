@@ -1,9 +1,8 @@
 import {SteamUser} from "./SteamUser";
 import axios, {AxiosResponse} from "axios";
 import { DTOParser } from "./DTOParser";
-import { response } from "express";
 
-class SteamUserService {
+export class SteamUserService {
     private API_KEY_PATH = ".key";
     private API_KEY: string = "";
 
@@ -42,6 +41,3 @@ class SteamUserService {
     }
 
 }
-
-export {SteamUserService};
-

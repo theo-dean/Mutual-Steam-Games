@@ -1,4 +1,3 @@
-//TEST COMMIT - DELETE ME
 import express from 'express';
 import { SteamUserService } from './SteamUserService';
 import {SteamUser} from "./SteamUser";
@@ -21,10 +20,6 @@ app.get('/', (req, res) => {
     Promise.all([promise1,promise2]).then(function(){
         res.send(user1.compareGamesWithUser(user2))
     })
-
-    
-
-    
 })
 
 app.listen(port, () => {

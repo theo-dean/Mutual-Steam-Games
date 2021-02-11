@@ -1,14 +1,14 @@
 declare module SteamGameDTO {
-    export interface Game {
+    export interface IGame {
         appid: string;
         name: string;
     }
 
-    export interface Apps {
-        apps: Game[]
+    export interface IApps {
+        apps: IGame[]
     }
 
-    export interface RootObject {
-        applist: Apps;
+    export interface IRootObject {
+        applist: IApps;
     }
 }

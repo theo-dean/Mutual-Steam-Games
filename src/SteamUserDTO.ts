@@ -1,5 +1,5 @@
 declare module SteamUserDTO {
-    export interface Game {
+    export interface IGame {
         appid: number;
         playtime_forever: number;
         playtime_windows_forever: number;
@@ -8,13 +8,13 @@ declare module SteamUserDTO {
         playtime_2weeks?: number;
     }
 
-    export interface Response {
+    export interface IResponse {
         game_count: number;
-        games: Game[];
+        games: IGame[];
     }
 
-    export interface RootObject {
-        response: Response;
+    export interface IRootObject {
+        response: IResponse;
     }
 }
 

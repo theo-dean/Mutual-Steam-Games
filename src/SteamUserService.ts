@@ -28,13 +28,6 @@ export class SteamUserService {
         return data;
     }
 
-    private async getGameResponse(appid: string): Promise<any> {
-        const url = "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=" + appid + "&count=0&maxlength=300&format=json";
-        const response = await axios.get(url);
-        const data = await response.data;
-        return data;
-    }
-
     async getUser(steamid: string): Promise<SteamUser> {
         const response = await this.getUserResponse(steamid);
         return DTOParser.parseUser(steamid, response)

@@ -1,34 +1,34 @@
-import {SteamUser} from "./SteamUser";
+import { SteamUser } from "./SteamUser";
 
-class SteamUserManager{
-    private static instance: SteamUserManager;
-    private users: SteamUser[];
+class SteamUserManager {
+  private static instance: SteamUserManager;
+  private users: SteamUser[];
 
-    private constructor(){
-        this.users = [];
+  private constructor() {
+    this.users = [];
+  }
+
+  public static getInstance(): SteamUserManager {
+    if (!SteamUserManager.instance) {
+      SteamUserManager.instance = new SteamUserManager();
     }
+    return SteamUserManager.instance;
+  }
 
-    public static getInstance(): SteamUserManager {
-        if (!SteamUserManager.instance){
-            SteamUserManager.instance = new SteamUserManager();
-        }
-        return SteamUserManager.instance;
-    }
+  public getUsers(): SteamUser[] {
+    return this.users;
+  }
 
-    public getUsers(): SteamUser[] {
-        return this.users;
-    }
+  public addUser(user: SteamUser) {
+    this.users.push(user);
+  }
 
-    public addUser(user: SteamUser){
-        this.users.push(user);
+  public removeUser(user: SteamUser) {
+    const index = this.users.indexOf(user);
+    if (index > -1) {
+      this.users.splice(index, 1);
     }
-
-    public removeUser(user: SteamUser){
-        const index = this.users.indexOf(user);
-        if (index > -1){
-            this.users.splice(index, 1);
-        }
-    }
+  }
 }
 
-export {SteamUserManager};
+export { SteamUserManager };

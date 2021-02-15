@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon dist/app.js & tsc -watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "pretty": "prettier --write \"./**/*.{js,ts,json}\""
   },
   "repository": {
     "type": "git",

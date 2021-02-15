@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import { DTOParser } from "./DTOParser";
-import {SteamGame} from "./SteamGame"
+import { SteamGame } from "./SteamGame"
 
 export class SteamGameService {
     private async getGameResponse(appid: string): Promise<any> {
@@ -12,8 +12,8 @@ export class SteamGameService {
 
     public async getGame(appid: string): Promise<SteamGame> {
         const data = await this.getGameResponse(appid);
-        console.log(data);
         const game = DTOParser.parseGame(appid, data);
+        console.log(game);
         return game;
     }
 }

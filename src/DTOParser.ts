@@ -12,8 +12,8 @@ export class DTOParser {
         return new SteamUser(steamid, games);
     }
 
-    static parseGame(appid: string, response: SteamGameDTO.RootObject): SteamGame {
-        //console.log(response.appid.data.name)
-        return new SteamGame(appid);
+    static parseGame(appid: string, response: SteamGameDTO.IRootObject): SteamGame {
+        console.log(response)
+        return new SteamGame(appid, "placeholder");
     }
 }

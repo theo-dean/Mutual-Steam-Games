@@ -1,5 +1,5 @@
-import {SteamUser} from "./SteamUser";
-import axios, {AxiosResponse} from "axios";
+import { SteamUser } from "./SteamUser";
+import axios, { AxiosResponse } from "axios";
 import { DTOParser } from "./DTOParser";
 
 export class SteamUserService {

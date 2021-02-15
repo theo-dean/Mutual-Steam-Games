@@ -163,7 +163,7 @@ declare module SteamGameDTO {
         data: Data;
     }
 
-    export interface RootObject {
+    export interface IRootObject {
         response: app;
     }
 }

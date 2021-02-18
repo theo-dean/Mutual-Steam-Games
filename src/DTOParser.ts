@@ -8,6 +8,7 @@ export class DTOParser {
         for (let game of response.response.games) {
             games.push(game.appid)
         }
+        //response.response.games.map((x) => {games.push(x.appid)})
 
         return new SteamUser(steamid, games);
     }

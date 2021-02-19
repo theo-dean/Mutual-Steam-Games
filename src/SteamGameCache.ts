@@ -34,12 +34,16 @@ export class SteamGameCache {
         return !!this.get(appid);
     }
 
-    private get(appid: string): {game: SteamGame, expiryDate: Date} | undefined{
-        return this.cache.find(x => x.game.appid === appid)
+    private get(appid: string): {game: SteamGame, expiryDate: Date} | false {
+        const record = this.cache.find(x => x.game.appid === appid)
+        return !!record ? record : false;
+
     }
 
     private isExpired(appid: string): boolean {
-        return false;
+        const record = this.get(appid)
+        const today = new Date()
+        return record ? record.expiryDate <  today : false;
     }
 
     private removeRecord(): void {

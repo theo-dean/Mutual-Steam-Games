@@ -14,8 +14,9 @@ export class SteamGameCache {
         return this;
     }
 
-    public getGame(appid: string): SteamGame {
-        
+    public getGame(appid: string): SteamGame | false{
+        const result = this.get(appid)
+        return !!result ? result.game : false;
     }
 
     public set(game: SteamGame): void {

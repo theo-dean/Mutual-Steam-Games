@@ -39,7 +39,7 @@ export class SteamGameCache {
     }
 
     private isExpired(appid: string): boolean {
-        return true;
+        return false;
     }
 
     private removeRecord(): void {

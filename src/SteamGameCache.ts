@@ -38,8 +38,8 @@ export class SteamGameCache {
         return this.cache.find(x => x.game.appid === appid)
     }
 
-    private isExpired(): boolean {
-
+    private isExpired(appid: string): boolean {
+        return true;
     }
 
     private removeRecord(): void {

@@ -1,5 +1,5 @@
-import { SteamGame } from "./SteamGame";
-import { SteamUser } from "./SteamUser";
+import { SteamGame } from "../../_domain/SteamGame";
+import { SteamUser } from "../../_domain/SteamUser";
 
 export class DTOParser {
     static parseUser(steamid: string, response: SteamUserDTO.IRootObject): SteamUser {

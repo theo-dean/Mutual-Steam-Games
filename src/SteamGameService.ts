@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { DTOParser } from "./DTOParser";
-import { SteamGame } from "./SteamGame";
+import { DTOParser } from "./_dataAccess/_util/DTOParser";
+import { SteamGame } from "./_domain/SteamGame";
 
 export class SteamGameService {
   private async getGameResponse(appid: string): Promise<any> {

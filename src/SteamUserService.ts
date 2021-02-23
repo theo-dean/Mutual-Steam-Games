@@ -1,6 +1,6 @@
-import { SteamUser } from "./SteamUser";
+import { SteamUser } from "./_domain/SteamUser";
 import axios, { AxiosResponse } from "axios";
-import { DTOParser } from "./DTOParser";
+import { DTOParser } from "./_dataAccess/_util/DTOParser";
 
 export class SteamUserService {
   private API_KEY_PATH = ".key";

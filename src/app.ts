@@ -1,7 +1,6 @@
 import express from "express";
 import { SteamUserService } from "./SteamUserService";
-import { SteamUser } from "./SteamUser";
-import { SteamUserManager } from "./SteamUserManager";
+import { SteamUser } from "./_domain/SteamUser";
 import { SteamGameService } from "./SteamGameService";
 
 const app = express();

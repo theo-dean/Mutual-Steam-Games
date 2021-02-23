@@ -1,4 +1,8 @@
-import { SteamUser } from "./SteamUser";
+// 👾 👾 👾  POTENTIALLY REDUNDANT 👾 👾 👾 
+
+
+/*
+import { SteamUser } from "./domain/SteamUser";
 
 class SteamUserManager {
   private static instance: SteamUserManager;
@@ -32,3 +36,4 @@ class SteamUserManager {
 }
 
 export { SteamUserManager };
+*/

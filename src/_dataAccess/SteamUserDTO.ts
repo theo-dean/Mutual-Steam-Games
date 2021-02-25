@@ -1,4 +1,4 @@
-declare module SteamUserDTO {
+export module SteamUserDTO {
   export interface IGame {
     appid: number;
     playtime_forever: number;

@@ -10,7 +10,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
   //const manager = SteamUserManager.getInstance();
-  steam.loadKey();
+  steam.loadKey(); //
   let user1: SteamUser, user2: SteamUser;
   let steamid = "76561198019038761";
   const promise1 = steam.getUser(steamid).then((user) => (user1 = user));

@@ -1,4 +1,4 @@
-declare module SteamGameDTO {
+export module SteamGameDTO {
   export interface PcRequirements {
     minimum: string;
     recommended: string;

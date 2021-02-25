@@ -1,6 +1,7 @@
 import { SteamGame } from "../../_domain/SteamGame";
 import { SteamUser } from "../../_domain/SteamUser";
-
+import { SteamUserDTO } from "../SteamUserDTO";
+import { SteamGameDTO } from "../SteamGameDTO"; 
 export class DTOParser {
     static parseUser(steamid: string, response: SteamUserDTO.IRootObject): SteamUser {
         let games = [];

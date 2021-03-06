@@ -1,5 +1,4 @@
-// 👾 👾 👾  POTENTIALLY REDUNDANT 👾 👾 👾 
-
+// 👾 👾 👾  POTENTIALLY REDUNDANT 👾 👾 👾
 
 /*
 import { SteamUser } from "./domain/SteamUser";

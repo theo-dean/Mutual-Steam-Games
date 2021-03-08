@@ -1,11 +1,10 @@
 import express from "express";
-import { SteamUserService } from "./SteamUserService";
+import { SteamUserService } from "./_dataAccess/SteamUserService";
 import { SteamUser } from "./_domain/SteamUser";
-import { SteamGameService } from "./SteamGameService";
+import { SteamGameService } from "./_dataAccess/SteamGameService";
 
 const app = express();
 const steam = new SteamUserService();
-steam.loadKey();
 const port = 3000;
 
 app.get("/", (req, res) => {

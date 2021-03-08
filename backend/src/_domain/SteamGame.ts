@@ -1,6 +1,6 @@
 export class SteamGame {
   appid: string;
-  name: string | undefined;
+  name: string;
 
   constructor(appid: string, name: string) {
     this.appid = appid;

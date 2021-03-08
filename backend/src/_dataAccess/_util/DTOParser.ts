@@ -1,6 +1,6 @@
 import { SteamGame } from "../../_domain/SteamGame";
 import { SteamUser } from "../../_domain/SteamUser";
-import { SteamUserDTO } from "../SteamUserDTO";
+import { SteamUserDTO } from "./SteamUserDTO";
 import { SteamGameDTO } from "../SteamGameDTO";
 
 export class DTOParser {

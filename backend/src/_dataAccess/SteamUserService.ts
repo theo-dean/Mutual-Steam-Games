@@ -1,24 +1,14 @@
 import { SteamUser } from "../_domain/SteamUser";
-import axios, { AxiosResponse } from "axios";
 import { DTOParser } from "./_util/DTOParser";
-//TODO: Refactor this out
+import {SteamService} from "./_services/SteamService";
+import {UserRequest} from "./_requests/UserRequest";
+import {SteamUserDTO} from "./_util/SteamUserDTO";
+
 export class SteamUserService {
-
-
-  private async getUserResponse(apiKey:string, steamid: string): Promise<any> {
-    const url =
-      "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" +
-      apiKey +
-      "&steamid=" +
-      steamid +
-      "&format=json";
-    const response = await axios.get(url);
-    const data = await response.data;
-    return data;
-  }
-
-  async getUser(apiKey: string, steamid: string): Promise<SteamUser> {
-    const response = await this.getUserResponse(apiKey, steamid);
-    return DTOParser.parseUser(steamid, response);
+  static async getSteamUser(steam: SteamService, UserId: string): Promise<SteamUser> {
+    // TODO: Caching check goes here (or maybe in SteamService??)
+    const SteamUserResponse = await steam.getHttpResponse(new UserRequest(steam.getKey(), UserId)) as SteamUserDTO.IRootObject
+    const steamUser = DTOParser.parseUser(UserId, SteamUserResponse);
+    return steamUser;
   }
 }

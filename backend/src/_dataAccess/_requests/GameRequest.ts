@@ -1,6 +1,6 @@
 import {SteamGame} from "../../_domain/SteamGame";
 
-export class GameRequest implements IRequest<SteamGame>{
+export class GameRequest implements IRequest{
     readonly URL;
 
     constructor(private appid: string) {

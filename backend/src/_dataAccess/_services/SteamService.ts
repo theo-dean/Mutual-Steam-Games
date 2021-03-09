@@ -1,6 +1,9 @@
+import axios from "axios";
+import {DTOParser} from "../_util/DTOParser";
+
 export class SteamService {
     private readonly API_KEY_PATH;
-    private API_KEY: string | undefined;
+    private API_KEY: string;
 
     constructor(ApiKeyPath?: string) {
         if (ApiKeyPath){
@@ -8,20 +11,26 @@ export class SteamService {
         } else {
             this.API_KEY_PATH = ".key";
         }
-        this.loadKey();
+        this.API_KEY = this.loadKey();
     }
 
-    loadKey(): void {
-        var fs = require("fs");
-        var key = "";
+    loadKey(): string {
+        const fs = require("fs");
+        let key = "";
         fs.readFile(this.API_KEY_PATH, (err: any, data: any) => {
             if (err) throw err;
-            this.API_KEY = data.toString();
+            key = this.API_KEY = data.toString();
         });
+        return key;
     }
 
-    getResponse<T>(){
+    getKey(): string {
+        return this.API_KEY;
+    }
 
+    async getHttpResponse(request: IRequest){
+        const response = await axios.get(request.URL);
+        return await response.data;
     }
 
 

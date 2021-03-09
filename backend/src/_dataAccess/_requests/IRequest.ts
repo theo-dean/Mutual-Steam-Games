@@ -1,3 +1,3 @@
-interface IRequest<T> {
+interface IRequest {
     URL: string;
 }

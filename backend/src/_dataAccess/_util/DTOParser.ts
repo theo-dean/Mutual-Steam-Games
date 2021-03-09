@@ -1,7 +1,7 @@
 import { SteamGame } from "../../_domain/SteamGame";
 import { SteamUser } from "../../_domain/SteamUser";
 import { SteamUserDTO } from "./SteamUserDTO";
-import { SteamGameDTO } from "../SteamGameDTO";
+import { SteamGameDTO } from "./SteamGameDTO";
 
 export class DTOParser {
   static parseUser(
@@ -24,4 +24,11 @@ export class DTOParser {
   ): SteamGame {
     return new SteamGame(appid, gameResponse.data.name);
   }
+
+  static parse<Parseable>(response: string){
+    if (Parseable === typeof SteamGame){}
+
+  }
 }
+
+export type Parseable = SteamGame | SteamUser;

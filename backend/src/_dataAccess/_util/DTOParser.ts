@@ -13,8 +13,6 @@ export class DTOParser {
     for (let game of response.response.games) {
       games.push(game.appid);
     }
-    //response.response.games.map((x) => {games.push(x.appid)})
-
     return new SteamUser(steamid, games);
   }
 
@@ -23,11 +21,6 @@ export class DTOParser {
     gameResponse: SteamGameDTO.IRootObject
   ): SteamGame {
     return new SteamGame(appid, gameResponse.data.name);
-  }
-
-  static parse<Parseable>(response: string){
-    if (Parseable === typeof SteamGame){}
-
   }
 }
 

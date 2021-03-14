@@ -1,3 +1,0 @@
-interface IRequest {
-    URL: string;
-}

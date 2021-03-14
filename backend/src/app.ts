@@ -1,3 +1,4 @@
+/*
 import express from "express";
 import { SteamUserService } from "./_dataAccess/SteamUserService";
 import { SteamUser } from "./_domain/SteamUser";
@@ -44,3 +45,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port:${port}`);
 });
+*/

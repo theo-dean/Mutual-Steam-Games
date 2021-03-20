@@ -1,7 +1,8 @@
 import {SteamUser} from "../../_domain/SteamUser";
 
-export class UserRequest implements IRequest {
+export class UserRequest implements IHttpRequest {
     public readonly URL: string;
+    public readonly Method = HttpMethod.GET;
 
     constructor(apiKey: String, steamid: string){
          this.URL =

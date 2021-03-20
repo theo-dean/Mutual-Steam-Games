@@ -8,7 +8,6 @@ class HttpRequestHandler {
             Headers: headers,
             Body: data
         } = request;
-        const response = await axios.request<T>({url, method, headers, data})
-        return response;
+        return await axios.request<T>({url, method, headers, data});
     }
 }

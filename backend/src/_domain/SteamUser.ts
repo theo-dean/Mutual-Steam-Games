@@ -8,6 +8,6 @@ export class SteamUser {
   }
 
   compareGamesWithUser(user: SteamUser): Array<number> {
-    return this.games.filter((val) => user.games.includes(val));
+    return this.games.filter((appid) => user.games.includes(appid));
   }
 }

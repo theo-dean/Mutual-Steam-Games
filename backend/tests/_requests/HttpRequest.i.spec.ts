@@ -1,6 +1,6 @@
 import {rest, setupWorker} from 'msw';
 import { setupServer} from "msw/node";
-import {Handlers} from "../../src/_domain/mocks/Handlers";
+import {Handlers} from "../mocks/Handlers";
 import axios from "axios";
 
 const server = setupServer(

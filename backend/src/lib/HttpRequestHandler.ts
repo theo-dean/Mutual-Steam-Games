@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 
-class HttpRequestHandler {
-    static async getResponse<T>(request: IHttpRequest): Promise<AxiosResponse<T>>{
+class HttpRequestHandler implements IHttpRequestHandler{
+    async getResponse<T>(request: IHttpRequest): Promise<any>{
         const {
             URL: url,
             Method: method,

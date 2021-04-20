@@ -1,5 +1,5 @@
 interface IHttpRequestHandler {
-    getResponse<T>(request: IHttpRequest): Promise<any>;
+    getResponse<T>(request: IHttpRequest): Promise<T | null>;
 }
 
 interface IHttpRequest {

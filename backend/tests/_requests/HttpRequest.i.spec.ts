@@ -21,3 +21,4 @@ test('Is MSW working?', async () => {
     const response = await axios.get("https://store.steampowered.com/api/appdetails");
     expect(response.status).toBe(200);
 })
+

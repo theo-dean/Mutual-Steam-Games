@@ -14,7 +14,7 @@ class HttpRequestHandler implements IHttpRequestHandler{
         } = request;
         const res = await axios.request<T>({url, method, headers, data});
 
-        if (res.status === 200){
+        if (res.status >= 200 && res.status < 400){
             return res.data;
         }
         this.logger.error(`Request:\n URL:${url}\n Method:${method}\n Headers: ${headers}\n Body: ${data}\n Failed with Error:\n`, res);

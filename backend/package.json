@@ -9,7 +9,7 @@
     "pretty": "prettier --write \"./**/*.{js,ts,json}\"",
     "dev": "nodemon",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
-    "start": "ts-node src/app.ts"
+    "start": "ts-node src/test.ts"
   },
   "repository": {
     "type": "git",
@@ -33,9 +33,10 @@
     "jest": "^26.6.3",
     "msw": "^0.27.1",
     "prettier": "^2.2.1",
+    "serverless-plugin-typescript": "^1.1.9",
     "ts-jest": "^26.5.4",
     "ts-node": "^9.1.1",
     "tslint": "^6.1.3",
-    "typescript": "^4.1.3"
+    "typescript": "^4.2.4"
   }
 }

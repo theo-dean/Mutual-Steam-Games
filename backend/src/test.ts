@@ -10,6 +10,17 @@ import getGame from "./_controllers/_getGame";
     );
 }
 
+/*
 main().then(data => {
     console.log(data);
-})
+})*/
+
+const testFunc = (event: any, context: any, callback: any) => {
+    const timestamp = new Date();
+    return {
+        statusCode: 200,
+        body: JSON.stringify(timestamp)
+    }
+}
+
+export {testFunc}

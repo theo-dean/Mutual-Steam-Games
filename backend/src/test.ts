@@ -1,12 +1,16 @@
 import {SteamGameService} from "./_services/SteamGameService";
 import getGame from "./_controllers/_getGame";
+import {Handler} from "aws-lambda";
 
- async function main(){
+export default async function findGame(appid: string | null){
     const gameService = new SteamGameService();
 
+    if (!appid){
+        appid = '811320';
+    }
     return await getGame(
         gameService,
-        '811320'
+        appid
     );
 }
 
@@ -15,12 +19,3 @@ main().then(data => {
     console.log(data);
 })*/
 
-const testFunc = (event: any, context: any, callback: any) => {
-    const timestamp = new Date();
-    return {
-        statusCode: 200,
-        body: JSON.stringify(timestamp)
-    }
-}
-
-export {testFunc}

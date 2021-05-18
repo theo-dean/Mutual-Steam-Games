@@ -13,7 +13,7 @@ export default async function findGame(appid: string | null){
         appid
     );
 }
-
+// AmongUS = 945360
 /*
 main().then(data => {
     console.log(data);

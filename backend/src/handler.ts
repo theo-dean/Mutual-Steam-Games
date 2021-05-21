@@ -1,18 +1,14 @@
 // TODO: Think about how to handle keys and such; environment variables?
-
-import {Handler} from "aws-lambda";
 import findGame from "./test";
+import * as express from 'express';
+import * as serverless from 'serverless-http';
 
-export const testFunc: Handler = async (event: any) => {
-    const body = JSON.parse(event.body)
-    const appResponse = await findGame(body.appid);
-    const response =  {
-        statusCode: 200,
-        body: JSON.stringify({
-                app: appResponse,
-            },
-            null,
-            2),
-    }
-    return response;
-}
+const app = express();
+
+app.get('/app/:appId', async function (req, res){
+    const response = JSON.stringify(await findGame(req.params.appId));
+    console.log('RESPONSE: '+response);
+    res.send(response);
+    });
+
+module.exports.handler = serverless(app);

@@ -4,6 +4,7 @@
   "description": "An application that displays commonly owned games of multiple users.",
   "main": "app.js",
   "scripts": {
+    "deploy": "sls deploy",
     "test": "jest",
     "tsc": "tsc",
     "pretty": "prettier --write \"./**/*.{js,ts,json}\"",

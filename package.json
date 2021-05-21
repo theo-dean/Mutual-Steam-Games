@@ -1,5 +1,5 @@
 {
-  "name": "mutual-steam-games",
+  "name": "mutual-steam-games-backend",
   "version": "1.0.0",
   "description": "An application that displays commonly owned games of multiple users.",
   "main": "app.js",

@@ -8,7 +8,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   profile: msg
-  stage: dev
+  stage: ${opt:stage,'dev'}
   region: eu-west-2
   lambdaHashingVersion: 20201221
 

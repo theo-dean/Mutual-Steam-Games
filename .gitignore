@@ -1,0 +1,5 @@
+.key
+node_modules
+dist/
+.idea/
+.serverless

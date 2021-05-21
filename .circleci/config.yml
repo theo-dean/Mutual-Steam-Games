@@ -31,7 +31,7 @@ jobs:
       - run:
           name: deploying to stage
           command: |
-            npm run deploy -s stage
+            npm run deploy -- -s stage
 
 workflows:
   # Below is the definition of your workflow.

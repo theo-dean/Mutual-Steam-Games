@@ -1,0 +1,49 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+
+jobs:
+  build-and-test:
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Run tests
+          command: npm test
+      - save_cache:
+          key: cache-{{ checksum "package-lock.json" }}-v1
+          paths:
+            - node_modules
+
+  deploy-stage:
+    docker:
+      - image: cimg/openjdk:15.0.1-node
+        environment:
+          SLS_DEBUG: '*'
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-{{ checksum "package-lock.json" }}-v1
+      - run:
+          name: deploying to stage
+          command: |
+            npm run deploy -- -s stage
+
+workflows:
+  # Below is the definition of your workflow.
+  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
+  # CircleCI will run this workflow on every commit.
+  # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  build_and_deploy_stage:
+    jobs:
+      - build-and-test
+      - deploy-stage:
+          requires:
+            - build-and-test
+          filter:
+            branches:
+              only: main

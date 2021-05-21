@@ -1,5 +1,5 @@
 // TODO: Think about how to handle keys and such; environment variables?
-import findGame from "./test";
+import findGame from "./findGame";
 import * as express from 'express';
 import * as serverless from 'serverless-http';
 

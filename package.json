@@ -9,7 +9,7 @@
     "pretty": "prettier --write \"./**/*.{js,ts,json}\"",
     "dev": "nodemon",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
-    "start": "ts-node src/test.ts"
+    "start": "ts-node src/findGame.ts"
   },
   "repository": {
     "type": "git",

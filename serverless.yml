@@ -1,0 +1,21 @@
+service: mutual-steam-games-backend
+frameworkVersion: '2'
+
+plugins:
+  - serverless-plugin-typescript
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: msg
+  stage: ${opt:stage,'dev'}
+  region: eu-west-2
+  lambdaHashingVersion: 20201221
+
+functions:
+  app:
+    handler: src/handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY

@@ -44,6 +44,6 @@ workflows:
       - deploy-stage:
           requires:
             - build-and-test
-          filter:
+          filters:
             branches:
               only: main

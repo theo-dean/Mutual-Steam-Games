@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.1
+  aws-cli: circleci/aws-cli@0.1.13
 
 
 jobs:
@@ -19,6 +19,13 @@ jobs:
           paths:
             - node_modules
 
+  aws-setup:
+    executor: aws-cli/default
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
+
   deploy-stage:
     docker:
       - image: cimg/openjdk:15.0.1-node
@@ -31,17 +38,17 @@ jobs:
       - run:
           name: deploying to stage
           command: |
-            echo ${AWS_ACCESS_KEY_ID}
-            echo ${AWS_SECRET_ACCESS_KEY}
             npm run deploy -- -s stage
 
 workflows:
   build_and_deploy:
     jobs:
       - build-and-test
+      - aws-setup
       - deploy-stage:
           requires:
             - build-and-test
+            - aws-setup
           filters:
             branches:
               only: main

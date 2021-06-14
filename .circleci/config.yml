@@ -1,8 +1,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.1
-
+  aws-cli: circleci/aws-cli@2.0.2
 
 jobs:
   build-and-test:
@@ -12,12 +11,28 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Run tests
-          command: npm test
+          name: Run unit tests
+          command: npm run itest
+      - run:
+          name: Run integration tests
+          command: npm run itest
       - save_cache:
           key: cache-{{ checksum "package-lock.json" }}-v1
           paths:
             - node_modules
+
+  e2e-test:
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-{{ checksum "package-lock.json" }}-v1
+      - aws-cli/install
+      - aws-cli/configure
+      - run:
+          name: run e2e tests
+          command: npm run e2etest
 
   deploy-stage:
     docker:
@@ -31,17 +46,19 @@ jobs:
       - run:
           name: deploying to stage
           command: |
-            echo ${AWS_ACCESS_KEY_ID}
-            echo ${AWS_SECRET_ACCESS_KEY}
             npm run deploy -- -s stage
 
 workflows:
+  version: 2
   build_and_deploy:
     jobs:
       - build-and-test
-      - deploy-stage:
+      - e2e-test:
           requires:
             - build-and-test
+      - deploy-stage:
+          requires:
+            - e2e-test
           filters:
             branches:
               only: main

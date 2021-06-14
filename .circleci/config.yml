@@ -1,15 +1,18 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@2.0.2
+  node: circleci/node@4.1
+
 
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:15.1
+      - image: cimg/openjdk:15.0.1-node
     steps:
       - checkout
-      - node/install-packages
+      - run:
+          name: Set up NPM
+          command: npm ci
       - run:
           name: Run unit tests
           command: npm run itest
@@ -46,6 +49,8 @@ jobs:
       - run:
           name: deploying to stage
           command: |
+            echo ${AWS_ACCESS_KEY_ID}
+            echo ${AWS_SECRET_ACCESS_KEY}
             npm run deploy -- -s stage
 
 workflows:

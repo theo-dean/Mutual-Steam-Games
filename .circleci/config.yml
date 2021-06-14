@@ -49,8 +49,6 @@ jobs:
       - run:
           name: deploying to stage
           command: |
-            echo ${AWS_ACCESS_KEY_ID}
-            echo ${AWS_SECRET_ACCESS_KEY}
             npm run deploy -- -s stage
 
 workflows:

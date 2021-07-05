@@ -24,7 +24,7 @@ jobs:
           paths:
             - node_modules
 
-  e2e-test:
+  aws-setup:
     docker:
       - image: cimg/node:15.1
     steps:
@@ -34,11 +34,8 @@ jobs:
       - aws-cli/install
       - aws-cli/setup
       - run:
-            name: Set up NPM
-            command: npm ci
-      - run:
-          name: run e2e tests
-          command: npm run e2e-test
+          name: Set up NPM
+          command: npm ci
 
   deploy-stage:
     docker:
@@ -59,12 +56,12 @@ workflows:
   build_and_deploy:
     jobs:
       - build-and-test
-      - e2e-test:
+      - aws-setup:
           requires:
             - build-and-test
       - deploy-stage:
           requires:
-            - e2e-test
+            - aws-setup
           filters:
             branches:
               only: main

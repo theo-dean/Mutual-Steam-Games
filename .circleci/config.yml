@@ -48,9 +48,10 @@ workflows:
   build_and_deploy:
     jobs:
       - build-and-test
-      - deploy-stage:
+      - deploy-stage-approval:
+          type: approval
           requires:
             - build-and-test
-          filters:
-            branches:
-              only: main
+      - deploy-stage:
+          requires:
+            - deploy-stage-approval

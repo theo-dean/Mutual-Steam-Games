@@ -8,10 +8,10 @@ export class DTOParser {
     steamid: string,
     response: SteamUserDTO.IRootObject
   ): SteamUser {
-    let games = [];
+    let games: string[] = [];
 
     for (let game of response.response.games) {
-      games.push(game.appid);
+      games.push(game.appid.toString());
     }
     return new SteamUser(steamid, games);
   }

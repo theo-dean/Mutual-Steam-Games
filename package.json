@@ -6,6 +6,9 @@
   "scripts": {
     "deploy": "sls deploy",
     "test": "jest",
+    "utest": "",
+    "itest": "",
+    "e2e-test": "",
     "tsc": "tsc",
     "pretty": "prettier --write \"./**/*.{js,ts,json}\"",
     "dev": "nodemon",

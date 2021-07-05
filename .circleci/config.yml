@@ -1,23 +1,41 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.1
+  aws-cli: circleci/aws-cli@2.0.2
 
 
 jobs:
   build-and-test:
     docker:
-      - image: cimg/node:15.1
+      - image: cimg/openjdk:15.0.1-node
     steps:
       - checkout
-      - node/install-packages
       - run:
-          name: Run tests
-          command: npm test
+          name: Set up NPM
+          command: npm ci
+      - run:
+          name: Run unit tests
+          command: npm run itest
+      - run:
+          name: Run integration tests
+          command: npm run itest
       - save_cache:
           key: cache-{{ checksum "package-lock.json" }}-v1
           paths:
             - node_modules
+
+  aws-setup:
+    docker:
+      - image: cimg/node:15.1
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-{{ checksum "package-lock.json" }}-v1
+      - aws-cli/install
+      - aws-cli/setup
+      - run:
+          name: Set up NPM
+          command: npm ci
 
   deploy-stage:
     docker:
@@ -31,21 +49,19 @@ jobs:
       - run:
           name: deploying to stage
           command: |
-            echo ${AWS_ACCESS_KEY_ID}
-            echo ${AWS_SECRET_ACCESS_KEY}
             npm run deploy -- -s stage
 
 workflows:
-  # Below is the definition of your workflow.
-  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
-  # CircleCI will run this workflow on every commit.
-  # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  build_and_deploy_stage:
+  version: 2
+  build_and_deploy:
     jobs:
       - build-and-test
-      - deploy-stage:
+      - aws-setup:
           requires:
             - build-and-test
+      - deploy-stage:
+          requires:
+            - aws-setup
           filters:
             branches:
               only: main

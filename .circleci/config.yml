@@ -33,7 +33,6 @@ jobs:
       - checkout
       - restore_cache:
           key: cache-{{ checksum "package-lock.json" }}-v1
-      - aws-cli/install
       - aws-cli/setup
       - run:
           name: Set up NMP
@@ -52,7 +51,6 @@ jobs:
       - checkout
       - restore_cache:
           key: cache-{{ checksum "package-lock.json" }}-v1
-      - aws-cli/install
       - aws-cli/setup
       - run:
           name: Set up NMP

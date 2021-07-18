@@ -33,7 +33,6 @@ jobs:
       - checkout
       - restore_cache:
           key: cache-{{ checksum "package-lock.json" }}-v1
-      - aws-cli/install
       - aws-cli/setup
       - run:
           name: Set up NMP
@@ -43,14 +42,43 @@ jobs:
           command: |
             npm run deploy -- -s stage
 
+  deploy-prod:
+    docker:
+      - image: cimg/openjdk:15.0.1-node
+        environment:
+          SLS_DEBUG: '*'
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-{{ checksum "package-lock.json" }}-v1
+      - aws-cli/setup
+      - run:
+          name: Set up NMP
+          command: npm ci
+      - run:
+          name: deploying to stage
+          command: |
+            npm run deploy -- -s prod
+
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build-and-test
-      - deploy-stage:
+      - deploy-stage-approval:
+          type: approval
           requires:
             - build-and-test
+      - deploy-stage:
+          requires:
+            - deploy-stage-approval
+      - deploy-prod-approval:
           filters:
             branches:
               only: main
+          type: approval
+          requires:
+            - deploy-stage
+      - deploy-prod:
+          requires:
+            - deploy-prod-approval

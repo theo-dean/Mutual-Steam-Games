@@ -3,6 +3,7 @@ import * as serverless from 'serverless-http';
 import findGame from "./findGame";
 
 const app = express();
+console.log("App Starting...")
 
 app.get('/user/:appId', function(req,res){
     const appId = req.params.appId;

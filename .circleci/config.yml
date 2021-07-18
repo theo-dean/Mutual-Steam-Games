@@ -73,6 +73,9 @@ workflows:
           requires:
             - deploy-stage-approval
       - deploy-prod-approval:
+          filters:
+            branches:
+              only: main
           type: approval
           requires:
             - deploy-stage

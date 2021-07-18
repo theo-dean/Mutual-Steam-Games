@@ -11,4 +11,8 @@ export class ConsoleLogger implements ILogger {
     error(message: string, data?: any){
         console.error(message, data);
     }
+
+    warn(message: string, data?: any){
+        console.warn(message, data)
+    }
 }

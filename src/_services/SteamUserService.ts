@@ -1,9 +1,10 @@
 import { SteamUser } from "../_domain/SteamUser";
-import { DTOParser } from "../_dataAccess/_util/DTOParser";
+import { DTOMapper } from "../_dataAccess/_util/DTOMapper";
 import {UserRequest} from "../_dataAccess/_requests/UserRequest";
 import {SteamUserDTO} from "../_dataAccess/_util/SteamUserDTO";
 import {ISteamAPIConfig} from "../_dataAccess/ISteamAPIConfig";
-import {ICache} from "../_dataAccess/_cache/ICache";
+import {ICache} from "../_domain/Cache";
+import axios from "axios";
 
 export interface ISteamUserService {
   getSteamUser(userId: string): Promise<SteamUser>
@@ -12,7 +13,6 @@ export interface ISteamUserService {
 export class SteamUserService implements ISteamUserService{
   constructor(
       private config: ISteamAPIConfig,
-      private httpHandler: IHttpRequestHandler,
       private cache: ICache<SteamUser>
   ) {
   }
@@ -20,15 +20,15 @@ export class SteamUserService implements ISteamUserService{
   async getSteamUser(
       userId: string,
   ): Promise<SteamUser> {
-    const cached = await this.cache.get<SteamUser>(userId);
+    const cached = await this.cache.get(userId);
     if (!!cached){
       return cached;
     }
-    const SteamUserResponse = await this.httpHandler.getResponse(
-        new UserRequest(this.config.getApiKey(), userId)
+    const SteamUserResponse = await axios.get(
+        new UserRequest(this.config.getApiKey(), userId).URL
     ) as SteamUserDTO.IRootObject;
-    const user = DTOParser.parseUser(userId, SteamUserResponse);
-    await this.cache.store<SteamUser>(user)
+    const user = DTOMapper.parseUser(userId, SteamUserResponse);
+    await this.cache.set(user, 1);
     return user;
   }
 }

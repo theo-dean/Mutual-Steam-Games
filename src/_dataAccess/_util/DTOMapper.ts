@@ -3,7 +3,7 @@ import { SteamUser } from "../../_domain/SteamUser";
 import { SteamUserDTO } from "./SteamUserDTO";
 import { SteamGameDTO } from "./SteamGameDTO";
 //TODO: ?????
-export class DTOParser {
+export class DTOMapper {
   static parseUser(
     steamid: string,
     response: SteamUserDTO.IRootObject

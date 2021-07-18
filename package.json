@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "deploy": "sls deploy",
+    "deploy-local": "sls deploy -s stage",
     "test": "jest",
     "utest": "",
     "itest": "",
@@ -40,6 +41,7 @@
     "msw": "^0.27.1",
     "prettier": "^2.2.1",
     "serverless": "^2.41.2",
+    "serverless-offline": "^7.0.0",
     "serverless-plugin-typescript": "^1.1.9",
     "ts-jest": "^26.5.4",
     "ts-node": "^9.1.1",
